@@ -13,10 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{24857fce-645c-43db-8063-0f67df25e1f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable">
+      <UniqueIdentifier>{fae447b2-0397-4875-9221-b9456362a84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Geometry">
+      <UniqueIdentifier>{06198751-b2ba-4e33-b99e-91ddaa46b0ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HW 1">
+      <UniqueIdentifier>{5e1efb6c-058b-4491-bbfa-9b97c54a87df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hw1-main.cpp">
+      <Filter>Source Files\HW 1</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelScene.cpp">
+      <Filter>Source Files\HW 1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AsteroidModel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShipModel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShipModel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShip.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShip.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

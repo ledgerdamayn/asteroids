@@ -22,19 +22,19 @@ namespace Asteroids {
 	}
 
 
-	void Vertex :: toSpherical() {
-		float x = position[0] * sin( toRadians( position[1] ) ) * cos( toRadians( position[2] ) );
-		float y = position[0] * sin( toRadians( position[1] ) ) * sin( toRadians( position[2] ) );
-		float z = position[0] * cos( toRadians( position[1] ) );
+	void Vertex :: toCartesian() {
+		float z = position[0] * sin( toRadians( position[1] ) ) * cos( toRadians( position[2] ) );
+		float x = position[0] * sin( toRadians( position[1] ) ) * sin( toRadians( position[2] ) );
+		float y = position[0] * cos( toRadians( position[1] ) );
 		
 		set( x , y , z );
 	}
 
 
-	void Vertex :: toCartesian() {
+	void Vertex :: toSpherical() {
 		float rho = (float) sqrt( pow(position[0],2) + pow(position[1],2) + pow(position[2],2) ); 
-		float phi = (float) atan( sqrt( pow(position[0],2) + pow(position[1],2) ) / position[0] );
-		float theta = (float) atan( position[1] / position[0] );
+		float phi = (float) atan( sqrt( pow(position[2],2) + pow(position[0],2) ) / position[2] );
+		float theta = (float) atan( position[0] / position[2] );
 
 		set( rho , phi , theta );
 	}

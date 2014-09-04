@@ -5,18 +5,16 @@
 *			it's distance from the center of sphere (rho) reduced.
 */
 
-
-#include "Model.h"
+#include "TriangleModel.h"
 #include "Sphere.h"
 
 namespace Asteroids {
 
-	class AsteroidModel : Model {
+	class AsteroidModel : public TriangleModel {
 
 	public :
 
 		Sphere * sphere;
-		int perturb;
 
 		AsteroidModel(); // Default sphere, Perturb = 50
 		AsteroidModel( float , int , int , int );

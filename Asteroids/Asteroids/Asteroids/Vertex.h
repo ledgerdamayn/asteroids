@@ -30,6 +30,8 @@ namespace Asteroids {
 
 		double toRadians( float );
 		float toDegrees( double );
+		
+		void perturb( int );  // Assumes spherical coordinates
 
 	};
 

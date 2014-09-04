@@ -4,10 +4,12 @@
 #include <stream.h>
 #endif
 
-#include "Triangle.h"
+#include <string.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <glut.h>
+
+#include "Triangle.h"
 
 namespace Asteroids {
 

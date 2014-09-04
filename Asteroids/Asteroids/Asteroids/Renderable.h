@@ -9,7 +9,7 @@ namespace Asteroids {
 
 		float position[3];
 		float rotationAxis[3];
-		float angle , scale;
+		float angle , scalar;
 		float rgb[3]; // Global/default color
 		
 		Model * model;

@@ -3,7 +3,7 @@
 
 namespace Asteroids {
 
-	class EnemyShipModel : Model {
+	class EnemyShipModel : public Model {
 
 	public :
 	

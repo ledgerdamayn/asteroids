@@ -6,8 +6,10 @@
 *	
 *	[ slice ][ point ]
 *	
-*	within an array with dimensions ( slices + 2 ) x points.
-*	
+*	within an array with dimensions ( slices ) x points, plus references to the top and bottom vertices.
+*
+*
+*	TO-DO: Use a 1-d array
 */
 
 #include "Vertex.h"
@@ -21,6 +23,7 @@ namespace Asteroids {
 		float radius;
 		int slices , points;
 		Vertex *** v;
+		Vertex * top , * bottom;
 
 		Sphere(); // Radius = 0.5 , Slices = 1 , Points = 3
 		Sphere( float , int , int );

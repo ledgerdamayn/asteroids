@@ -76,11 +76,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="AsteroidModel.cpp" />
     <ClCompile Include="hw1-main.cpp" />
     <ClCompile Include="ModelScene.cpp" />
     <ClCompile Include="opengl.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Charlie\Desktop\Graphics\glut-3.7.6-bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Renderable.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="TriangleModel.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
@@ -95,6 +102,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleModel.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

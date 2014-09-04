@@ -1,6 +1,17 @@
+#ifdef _M_IX86
+#include <windows.h>
+#else
+#include <stream.h>
+#endif
+
+#include <string.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <glut.h>
 
 #include "Vertex.h"
 #include <math.h>
+#include <stdlib.h>
 
 #define PI 3.14159265
 
@@ -47,6 +58,11 @@ namespace Asteroids {
 
 	float Vertex :: toDegrees( double radians ) {
 		return (float) radians * 180.0f / PI;
+	}
+
+
+	void Vertex :: perturb( int percent ) {
+		position[0] *= 1.0f - ( rand() % percent + 1 ) / 100.f;
 	}
 
 

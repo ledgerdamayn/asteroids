@@ -25,6 +25,15 @@
     <Filter Include="Source Files\HW 1">
       <UniqueIdentifier>{5e1efb6c-058b-4491-bbfa-9b97c54a87df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Geometry">
+      <UniqueIdentifier>{bbc2ff64-8b35-4f62-b1d1-80dab93ff623}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Models">
+      <UniqueIdentifier>{0f241f62-d7f4-47f5-beac-865bef4db8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Renderable">
+      <UniqueIdentifier>{b3387b1d-8993-4c1e-a846-8e50f761b9e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="opengl.cpp">
@@ -35,6 +44,27 @@
     </ClCompile>
     <ClCompile Include="ModelScene.cpp">
       <Filter>Source Files\HW 1</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Resource Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Resource Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Resource Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Resource Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidModel.cpp">
+      <Filter>Resource Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleModel.cpp">
+      <Filter>Resource Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>Resource Files\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleModel.h">
+      <Filter>Header Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,14 +11,19 @@ namespace Asteroids {
 
 	public :
 
-		float position[3];
+		float position[3]; // (x,y,z) or (rho,phi,theta)
 
 		Vertex();
 		Vertex( float , float , float );
 		~Vertex();
 		
+		void set( float , float , float );
+
 		void toSpherical();
 		void toCartesian();
+
+		double toRadians( float );
+		float toDegrees( double );
 
 	};
 

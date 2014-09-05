@@ -3,7 +3,7 @@
 
 namespace Asteroids {
 
-	class EnemyShip : Renderable {
+	class EnemyShip : public Renderable {
 
 	public :
 

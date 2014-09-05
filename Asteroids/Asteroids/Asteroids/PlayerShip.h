@@ -3,7 +3,7 @@
 
 namespace Asteroids {
 
-	class PlayerShip : Renderable {
+	class PlayerShip : public Renderable {
 
 	public :
 

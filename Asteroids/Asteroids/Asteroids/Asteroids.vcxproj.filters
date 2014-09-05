@@ -22,9 +22,6 @@
     <Filter Include="Header Files\Geometry">
       <UniqueIdentifier>{06198751-b2ba-4e33-b99e-91ddaa46b0ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\HW 1">
-      <UniqueIdentifier>{5e1efb6c-058b-4491-bbfa-9b97c54a87df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Geometry">
       <UniqueIdentifier>{bbc2ff64-8b35-4f62-b1d1-80dab93ff623}</UniqueIdentifier>
     </Filter>
@@ -36,15 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="opengl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hw1-main.cpp">
-      <Filter>Source Files\HW 1</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelScene.cpp">
-      <Filter>Source Files\HW 1</Filter>
-    </ClCompile>
     <ClCompile Include="Sphere.cpp">
       <Filter>Resource Files\Geometry</Filter>
     </ClCompile>
@@ -64,6 +52,27 @@
       <Filter>Resource Files\Models</Filter>
     </ClCompile>
     <ClCompile Include="Renderable.cpp">
+      <Filter>Resource Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hw1_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyShipModel.cpp">
+      <Filter>Resource Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerShipModel.cpp">
+      <Filter>Resource Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerShip.cpp">
+      <Filter>Resource Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyShip.cpp">
       <Filter>Resource Files\Renderable</Filter>
     </ClCompile>
   </ItemGroup>

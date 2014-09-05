@@ -1,3 +1,5 @@
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
 
 #include "Vertex.h"
 
@@ -7,7 +9,7 @@ namespace Asteroids {
 
 	public :
 
-		Vertex * v[3];
+		Vertex ** v;
 		float rgb[3];
 
 		Triangle();
@@ -20,3 +22,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

@@ -18,14 +18,20 @@ namespace Asteroids {
 		setScale( 1.0f );
 		setAngle( 0.0f );
 		setRotationAxis( 0.0f , 0.0f , 1.0f );
-		setColor( 255.0f , 255.0f , 255.0f );
+		setColor( 1.0f , 1.0f , 1.0f );
 
 		model = new AsteroidModel();
 	}
 
 
 	Asteroid :: Asteroid( float scalar , float r , float g , float b , int perturb ) {
+		setPosition( 0.0f , 0.0f , 0.0f );
+		setScale( scalar );
+		setAngle( 0.0f );
+		setRotationAxis( 0.0f , 0.0f , 1.0f );
+		setColor( r , g , b );
 
+		model = new AsteroidModel( 0.5 , 3 , 5 , perturb );
 	}
 
 

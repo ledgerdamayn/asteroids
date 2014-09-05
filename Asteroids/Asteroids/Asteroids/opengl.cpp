@@ -204,7 +204,7 @@ void handle_mouse( int b, int s, int x, int y )
   mouse_y = glutGet( GLUT_WINDOW_HEIGHT ) - y;
 }					// End routine handle_mouse
 
-
+/*
 void main( int argc, char *argv[] )
 {
   glutInit( &argc, argv );		// Initialize GLUT
@@ -239,3 +239,4 @@ void main( int argc, char *argv[] )
 
   glutMainLoop();			// Enter GLUT main loop
 }					// End mainline
+*/

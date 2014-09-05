@@ -9,14 +9,16 @@
 #include <glut.h>
 
 #include "TriangleModel.h"
+#include <iostream>
 
 namespace Asteroids {
 
 	void TriangleModel :: draw() {
 		glBegin( GL_TRIANGLES );
 		
-		for( std::list<Triangle *>::iterator i = triangles.begin() ; i != triangles.end() ; i++ )
+		for( std::list<Triangle *>::iterator i = triangles.begin() ; i != triangles.end() ; ++i ) {
 			(*i)->draw();
+		}
 		
 		glEnd();
 	}

@@ -1,3 +1,6 @@
+#ifndef ASTEROIDMODEL_H
+#define ASTEROIDMODEL_H
+
 /*
 *	An AsteroidModel generates a randomized unit model given parameters:
 *		sphere - contains vertices comprising a sphere approximation in space
@@ -23,3 +26,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

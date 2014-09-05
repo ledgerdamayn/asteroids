@@ -78,11 +78,13 @@
   <ItemGroup>
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="AsteroidModel.cpp" />
-    <ClCompile Include="hw1-main.cpp" />
+    <ClCompile Include="EnemyShip.cpp" />
+    <ClCompile Include="EnemyShipModel.cpp" />
+    <ClCompile Include="hw1_main.cpp" />
     <ClCompile Include="ModelScene.cpp" />
-    <ClCompile Include="opengl.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Charlie\Desktop\Graphics\glut-3.7.6-bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
+    <ClCompile Include="opengl.cpp" />
+    <ClCompile Include="PlayerShip.cpp" />
+    <ClCompile Include="PlayerShipModel.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Triangle.cpp" />

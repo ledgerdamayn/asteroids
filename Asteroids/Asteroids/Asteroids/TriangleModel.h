@@ -1,3 +1,5 @@
+#ifndef TRIANGLEMODEL_H
+#define TRIANGLEMODEL_H
 
 #include "Model.h"
 #include "Triangle.h"
@@ -17,3 +19,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef ASTEROID_H
+#define ASTEROID_H
 
 #include "Renderable.h"
 
@@ -16,3 +18,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

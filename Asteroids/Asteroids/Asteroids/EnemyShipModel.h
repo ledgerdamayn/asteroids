@@ -1,3 +1,5 @@
+#ifndef ENEMYSHIPMODEL_H
+#define ENEMYSHIPMODEL_H
 
 #include "Model.h"
 
@@ -13,3 +15,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

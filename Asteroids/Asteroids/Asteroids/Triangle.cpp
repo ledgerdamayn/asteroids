@@ -10,11 +10,13 @@
 #include <glut.h>
 
 #include "Triangle.h"
+#include <iostream>
 
 namespace Asteroids {
 
 
 	Triangle :: Triangle() {
+		v = new Vertex * [3];
 		v[0] = new Vertex();
 		v[1] = new Vertex();
 		v[2] = new Vertex();
@@ -22,6 +24,7 @@ namespace Asteroids {
 
 
 	Triangle :: Triangle( Vertex * v1 , Vertex * v2 , Vertex * v3 ) {
+		v = new Vertex * [3];
 		v[0] = v1;
 		v[1] = v2;
 		v[2] = v3;
@@ -32,6 +35,7 @@ namespace Asteroids {
 
 
 	Triangle :: Triangle( Vertex * v1 , Vertex * v2 , Vertex * v3 , float r , float g , float b ) {
+		v = new Vertex * [3];
 		v[0] = v1;
 		v[1] = v2;
 		v[2] = v3;
@@ -42,6 +46,12 @@ namespace Asteroids {
 
 
 	void Triangle :: draw() {
+		/*
+		std::cout << v[0]->position[0] << " " << v[0]->position[1] << " " << v[0]->position[2] << "\n";
+		std::cout << v[1]->position[0] << " " << v[1]->position[1] << " " << v[1]->position[2] << "\n";
+		std::cout << v[2]->position[0] << " " << v[2]->position[1] << " " << v[2]->position[2] << "\n\n";
+		*/
+
 		glVertex3fv( v[0]->position );
 		glVertex3fv( v[1]->position ); 
 		glVertex3fv( v[2]->position );

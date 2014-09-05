@@ -1,3 +1,6 @@
+#ifndef SPHERE_H
+#define SPHERE_H
+
 /*
 *	A Sphere is a container for information that can be utilized by models to make
 *	approximations of spheres.
@@ -35,3 +38,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

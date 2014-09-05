@@ -1,3 +1,6 @@
+#ifndef VERTEX_H
+#define VERTEX_H
+
 /*
 *	A Vertex is a collection of three points.
 *	Can represent either cartesian or spherical coordinates.
@@ -17,7 +20,7 @@ namespace Asteroids {
 
 	public :
 
-		float position[3]; // (x,y,z) or (rho,phi,theta)
+		float * position; // (x,y,z) or (rho,phi,theta)
 
 		Vertex();
 		Vertex( float , float , float );
@@ -36,3 +39,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

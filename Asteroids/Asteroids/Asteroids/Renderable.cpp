@@ -1,3 +1,13 @@
+#ifdef _M_IX86
+#include <windows.h>
+#else
+#include <stream.h>
+#endif
+
+#include <string.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <glut.h>
 
 #include "Renderable.h"
 
@@ -51,5 +61,17 @@ namespace Asteroids {
 		rgb[2] = b;
 	}
 
+
+	void Renderable :: draw() {
+		glPushMatrix();
+		glColor3fv( rgb );
+		
+		glTranslatef( position[0] , position[1] , position[2] );
+		glScalef( scalar , scalar , scalar );
+		glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
+		model->draw();
+		
+		glPopMatrix();
+	}
 
 }

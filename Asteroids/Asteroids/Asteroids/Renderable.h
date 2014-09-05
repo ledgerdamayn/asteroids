@@ -1,3 +1,5 @@
+#ifndef RENDERABLE_H
+#define RENDERABLE_H
 
 #include "Model.h"
 
@@ -14,7 +16,7 @@ namespace Asteroids {
 		
 		Model * model;
 
-		virtual void draw() = 0;
+		virtual void draw();
 
 		void translate( float , float , float );
 		void scale( float );
@@ -31,3 +33,5 @@ namespace Asteroids {
 
 
 }
+
+#endif

@@ -10,20 +10,23 @@
 #include <glut.h>
 
 #include "Vertex.h"
-#include <math.h>
 #include <stdlib.h>
 
-#define PI 3.14159265
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 
 namespace Asteroids {
 
 
 	Vertex :: Vertex() {
+		position = new float [3];
 		set( 0.0f , 0.0f , 0.0f );
 	}
 
 
 	Vertex :: Vertex( float x , float y , float z ) {
+		position = new float [3];
 		set( x , y , z );
 	}
 
@@ -33,15 +36,22 @@ namespace Asteroids {
 	}
 
 
+	void Vertex :: set( float x , float y , float z ) {
+		position[0] = x;
+		position[1] = y;
+		position[2] = z;
+	}
+
+
 	void Vertex :: toCartesian() {
-		float z = position[0] * sin( toRadians( position[1] ) ) * cos( toRadians( position[2] ) );
-		float x = position[0] * sin( toRadians( position[1] ) ) * sin( toRadians( position[2] ) );
-		float y = position[0] * cos( toRadians( position[1] ) );
+		float z = position[0] * sin( position[1] ) * cos( position[2] );
+		float x = position[0] * sin( position[1] ) * sin( position[2] );
+		float y = position[0] * cos( position[1] );
 		
 		set( x , y , z );
 	}
 
-
+	/* Untested */
 	void Vertex :: toSpherical() {
 		float rho = (float) sqrt( pow(position[0],2) + pow(position[1],2) + pow(position[2],2) ); 
 		float phi = (float) atan( sqrt( pow(position[2],2) + pow(position[0],2) ) / position[2] );
@@ -52,12 +62,12 @@ namespace Asteroids {
 
 
 	double Vertex :: toRadians( float degrees ) {
-		return (double) degrees * PI / 180.0;
+		return (double) degrees * M_PI / 180.0;
 	}
 
 
 	float Vertex :: toDegrees( double radians ) {
-		return (float) radians * 180.0f / PI;
+		return (float) radians * 180.0f / M_PI;
 	}
 
 

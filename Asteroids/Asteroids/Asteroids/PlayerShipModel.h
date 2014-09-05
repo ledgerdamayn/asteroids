@@ -1,3 +1,5 @@
+#ifndef PLAYERSHIPMODEL_H
+#define PLAYERSHIPMODEL_H
 
 #include "Model.h"
 
@@ -13,3 +15,5 @@ namespace Asteroids {
 	};
 
 }
+
+#endif

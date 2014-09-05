@@ -42,14 +42,20 @@ namespace Asteroids {
 
 	void EnemyShip :: draw() {
 		glPushMatrix();
-		glColor3fv( rgb );
-		
-		glTranslatef( position[0] , position[1] , position[2] );
-		glScalef( scalar , scalar , scalar );
-		glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
-		
-		glutWireCube( 1.0 );
-		
+			glColor3fv( rgb );	
+			glTranslatef( position[0] , position[1] , position[2] );
+			glScalef( scalar , scalar , scalar );
+			glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
+			glutWireTorus( 0.25 , 0.5 , 10 , 10 );
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3fv( rgb );	
+			glTranslatef( position[0] , position[1] + 0.25 , position[2] );
+			glScalef( scalar , scalar , scalar );
+			glTranslatef( 0.0f , 0.2f , 0.0f );
+			glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
+			glutWireSphere( 0.4 , 10 , 10 );
 		glPopMatrix();
 	}
 

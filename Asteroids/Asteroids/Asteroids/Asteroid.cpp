@@ -31,7 +31,7 @@ namespace Asteroids {
 		setRotationAxis( 0.0f , 0.0f , 1.0f );
 		setColor( r , g , b );
 
-		model = new AsteroidModel( 0.5 , 5 , 5 , perturb );
+		model = new AsteroidModel( 0.5 , 5 , 7 , perturb );
 	}
 
 

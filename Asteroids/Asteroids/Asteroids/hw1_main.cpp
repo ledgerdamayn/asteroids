@@ -30,7 +30,7 @@ void transform( int );
 // Global Variables
 
 int timerFrequency = 50; // 20 times/sec
-float rotationSpeed = 0.25f; // Full rotations/second
+float rotationSpeed = 0.1f; // Full rotations/second
 int windowSize = 500;
 
 Asteroids::Asteroid * asteroid;
@@ -47,7 +47,7 @@ void init() {
 						                static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 										static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 										static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-										50 );
+										75 );
 	asteroid->setRotationAxis( 1.0f , 0.0f , 0.0f );
 	asteroid->setPosition( 0.0f , 50.0f , 0.0f );
 	asteroid->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 

@@ -31,8 +31,10 @@ namespace Asteroids {
 			for ( int j = 1 ; j < points + 1 ; ++j ) {
 				if ( i % 2 == 0 ) {
 					triangles.push_back( new Triangle( sphere->v[i][ j % points ] , sphere->v[i+1][ j % points ] , sphere->v[i][ (j+1) % points ] ) );
+					triangles.push_back( new Triangle( sphere->v[i][ j % points ] , sphere->v[i+1][ (j-1) % points ] , sphere->v[i][ j % points ] ) );
 				} else {
-					triangles.push_back( new Triangle( sphere->v[i][ j % points ] , sphere->v[i+1][ (j-1) % points ] , sphere->v[i+1][ j % points ] ) );
+					triangles.push_back( new Triangle( sphere->v[i][ j % points ] , sphere->v[i+1][ j % points ] , sphere->v[i+1][ (j+1) % points ] ) );
+					triangles.push_back( new Triangle( sphere->v[i][ j % points ] , sphere->v[i+1][ (j+1) % points ] , sphere->v[i][ j % points ] ) );
 				}
 			}
 		}

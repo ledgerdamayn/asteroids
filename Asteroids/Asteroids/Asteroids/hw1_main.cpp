@@ -30,8 +30,8 @@ void transform( int );
 // Global Variables
 
 int timerFrequency = 50; // 20 times/sec
-float rotationSpeed = 0.5f; // Full rotations/second
-
+float rotationSpeed = 0.25f; // Full rotations/second
+int windowSize = 500;
 
 Asteroids::Asteroid * asteroid;
 Asteroids::PlayerShip * playerShip;
@@ -49,26 +49,27 @@ void init() {
 										static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 										50 );
 	asteroid->setRotationAxis( 1.0f , 0.0f , 0.0f );
-	asteroid->setPosition( -3.0f , 0.0f , 0.0f );
+	asteroid->setPosition( 0.0f , 50.0f , 0.0f );
 	asteroid->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
 					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	asteroid->setScale( 2.0f );
+	asteroid->setScale( 100.0f );
 
 	playerShip = new Asteroids::PlayerShip();
 	playerShip->setRotationAxis( 1.0f , 0.0f , 0.0f );
+	playerShip->setPosition( -50.0f , -50.0f , 0.0f );
 	playerShip->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
 					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	playerShip->setScale( 2.0f );
+	playerShip->setScale( 50.0f );
 
 	enemyShip = new Asteroids::EnemyShip();
 	enemyShip->setRotationAxis( 1.0f , 0.0f , 0.0f );
-	enemyShip->setPosition( 3.0f , 0.0f , 0.0f );
+	enemyShip->setPosition( 50.0f , -50.0f , 0.0f );
 	enemyShip->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
 					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
 						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	enemyShip->setScale( 2.0f );
+	enemyShip->setScale( 50.0f );
 }
 
 // Callback functions
@@ -76,6 +77,8 @@ void init() {
 void display() {
 	glMatrixMode( GL_MODELVIEW );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	glLoadIdentity();
+	gluLookAt( 0 , 0 , 10 , 0 , 0 , -1 , 0 , 1 , 0 );
 
 	asteroid->draw();
 	playerShip->draw();
@@ -109,6 +112,7 @@ void transform( int x ) {
 void main( int argc , char * argv[] ) {
 	glutInit( &argc , argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
+	glutInitWindowSize( 500 , 500 );
 	glutCreateWindow( "Homework 1 - Modelling and Rendering" );
 
 	init();
@@ -121,23 +125,22 @@ void main( int argc , char * argv[] ) {
 
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
-	gluPerspective( 45 , 1 , 1 , 10 );
-	gluLookAt( 0 , 0 , 10 , 0 , 0 , -1 , 0 , 1 , 0 );
+	glOrtho( -100 , 100 , -100 , 100 , -50 , 100 );
 
 	glShadeModel( GL_SMOOTH );
 	glClearDepth( 1.0 );
-	glClearColor( 1 , 1 , 1 , 1 );
+	glClearColor( 0 , 0 , 0 , 0 );
 	glEnable( GL_DEPTH_TEST );
 
 	glEnable( GL_CULL_FACE );
 	glCullFace( GL_BACK );
 
-	GLfloat light_position[] = { 1.0 , 1.0 , 1.0 , 0.0 };
-	glLightfv( GL_LIGHT0 , GL_POSITION , light_position );
+//	GLfloat light_position[] = { 1.0 , 1.0 , 1.0 , 0.0 };
+//	glLightfv( GL_LIGHT0 , GL_POSITION , light_position );
 
-	glEnable( GL_LIGHTING );
-	glEnable( GL_LIGHT0 );
-	glEnable( GL_COLOR_MATERIAL );
+//	glEnable( GL_LIGHTING );
+//	glEnable( GL_LIGHT0 );
+//	glEnable( GL_COLOR_MATERIAL );
 
 	glutMainLoop();
 }

@@ -15,13 +15,10 @@ namespace Asteroids {
 
 	void TriangleModel :: draw() {
 		// glBegin( GL_TRIANGLES );
-		glBegin( GL_LINES );
-
+		
 		for( std::list<Triangle *>::iterator i = triangles.begin() ; i != triangles.end() ; ++i ) {
 			(*i)->draw();
 		}
-		
-		glEnd();
 	}
 
 }

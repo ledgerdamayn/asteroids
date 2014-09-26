@@ -48,7 +48,7 @@ namespace Asteroids {
 		glScalef( scalar , scalar , scalar );
 		glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
 		
-		glutWireTetrahedron();
+		glutSolidTetrahedron();
 		
 		glPopMatrix();
 	}

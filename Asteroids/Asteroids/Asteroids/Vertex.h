@@ -36,6 +36,13 @@ namespace Asteroids {
 		
 		void perturb( int );  // Assumes spherical coordinates
 
+		float x();
+		float y();
+		float z();
+		float rho();
+		float phi();
+		float theta();
+
 	};
 
 }

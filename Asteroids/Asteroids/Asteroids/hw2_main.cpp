@@ -127,7 +127,7 @@ void main( int argc , char * argv[] ) {
 	glLoadIdentity();
 	glOrtho( -100 , 100 , -100 , 100 , -50 , 100 );
 
-	glShadeModel( GL_SMOOTH );
+	glShadeModel( GL_FLAT );
 	glClearDepth( 1.0 );
 	glClearColor( 0 , 0 , 0 , 0 );
 	glEnable( GL_DEPTH_TEST );
@@ -135,12 +135,15 @@ void main( int argc , char * argv[] ) {
 	glEnable( GL_CULL_FACE );
 	glCullFace( GL_BACK );
 
-//	GLfloat light_position[] = { 1.0 , 1.0 , 1.0 , 0.0 };
-//	glLightfv( GL_LIGHT0 , GL_POSITION , light_position );
+	GLfloat light_position[] = { 1.0 , 1.0 , 1.0 , 0.0 };
+	glLightfv( GL_LIGHT0 , GL_POSITION , light_position );
 
-//	glEnable( GL_LIGHTING );
-//	glEnable( GL_LIGHT0 );
-//	glEnable( GL_COLOR_MATERIAL );
+	glEnable( GL_LIGHTING );
+	glEnable( GL_LIGHT0 );
+	glEnable( GL_COLOR_MATERIAL );
+
+	glEnable( GL_DEPTH );
+	glEnable( GL_NORMALIZE );
 
 	glutMainLoop();
 }

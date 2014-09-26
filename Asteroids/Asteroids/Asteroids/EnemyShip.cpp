@@ -46,7 +46,7 @@ namespace Asteroids {
 			glTranslatef( position[0] , position[1] , position[2] );
 			glScalef( scalar , scalar , scalar );
 			glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
-			glutWireTorus( 0.25 , 0.5 , 10 , 10 );
+			glutSolidTorus( 0.25 , 0.5 , 10 , 10 );
 		glPopMatrix();
 
 		glPushMatrix();
@@ -55,7 +55,7 @@ namespace Asteroids {
 			glScalef( scalar , scalar , scalar );
 			glTranslatef( 0.0f , 0.2f , 0.0f );
 			glRotatef( angle , rotationAxis[0] , rotationAxis[1] , rotationAxis[2] );
-			glutWireSphere( 0.4 , 10 , 10 );
+			glutSolidSphere( 0.4 , 10 , 10 );
 		glPopMatrix();
 	}
 

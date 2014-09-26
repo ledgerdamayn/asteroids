@@ -76,4 +76,14 @@ namespace Asteroids {
 	}
 
 
+	float Vertex :: x() { return position[0]; }
+	float Vertex :: y() { return position[1]; }
+	float Vertex :: z() { return position[2]; }
+
+	float Vertex :: rho() { return position[0]; }
+	float Vertex :: phi() { return position[1]; }
+	float Vertex :: theta() { return position[2]; }
+
+
+
 }

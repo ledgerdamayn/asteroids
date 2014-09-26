@@ -10,6 +10,7 @@ namespace Asteroids {
 	public :
 
 		Vertex ** v;
+		Vertex * n;
 		float rgb[3];
 
 		Triangle();
@@ -18,6 +19,7 @@ namespace Asteroids {
 		~Triangle();
 
 		void draw();
+		void calculateNormal();
 
 	};
 

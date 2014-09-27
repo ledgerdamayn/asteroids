@@ -80,7 +80,9 @@
     <ClCompile Include="AsteroidModel.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="EnemyShipModel.cpp" />
-    <ClCompile Include="hw1_main.cpp" />
+    <ClCompile Include="hw2_main.cpp" />
+    <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="LaserModel.cpp" />
     <ClCompile Include="ModelScene.cpp" />
     <ClCompile Include="opengl.cpp" />
     <ClCompile Include="PlayerShip.cpp" />
@@ -94,8 +96,11 @@
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AsteroidModel.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="EnemyShipModel.h" />
+    <ClInclude Include="Laser.h" />
+    <ClInclude Include="LaserModel.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerShip.h" />

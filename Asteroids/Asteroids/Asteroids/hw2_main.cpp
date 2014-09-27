@@ -4,6 +4,8 @@
 #include <stream.h>
 #endif
 
+#define _USE_MATH_DEFINES
+
 #include <string.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -15,25 +17,37 @@
 #include "Model.h"
 #include "Asteroid.h"
 #include "PlayerShip.h"
-#include "EnemyShip.h" 
+#include "EnemyShip.h"
+#include "Constants.h"
+#include "Laser.h"
 
 #include <iostream>
+#include <list>
 	
+
 // Prototypes
 
 void init( void );
 void display( void );
+void render( void );
 void handleMenu( int );
 void transform( int );
+void keyDown( unsigned char , int , int );
+void keyUp( unsigned char , int , int );
+void specialDown( int , int , int );
+void specialUp( int , int , int );
 	
+
 
 // Global Variables
 
-int timerFrequency = 50; // 20 times/sec
-float rotationSpeed = 0.1f; // Full rotations/second
-int windowSize = 500;
+int asteroid_count = 4;
+int laser_count = 0;
 
-Asteroids::Asteroid * asteroid;
+Asteroids::Asteroid ** asteroids;
+
+std::list<Asteroids::Laser *> lasers;
+
 Asteroids::PlayerShip * playerShip;
 Asteroids::EnemyShip * enemyShip;
 
@@ -43,34 +57,17 @@ Asteroids::EnemyShip * enemyShip;
 void init() {
 	srand( time( NULL ) );
 
-	asteroid = new Asteroids::Asteroid( 2.0f , 
-						                static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-										static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-										static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-										75 );
-	asteroid->setRotationAxis( 1.0f , 0.0f , 0.0f );
-	asteroid->setPosition( 0.0f , 50.0f , 0.0f );
-	asteroid->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
-					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	asteroid->setScale( 100.0f );
+	asteroids = new Asteroids::Asteroid * [asteroid_count];
+	for ( int i = 0 ; i < asteroid_count ; ++i ) {
+		asteroids[i] = new Asteroids::Asteroid( 75 );
+		asteroids[i]->initialize( i );
+	}
 
 	playerShip = new Asteroids::PlayerShip();
-	playerShip->setRotationAxis( 1.0f , 0.0f , 0.0f );
-	playerShip->setPosition( -50.0f , -50.0f , 0.0f );
-	playerShip->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
-					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	playerShip->setScale( 50.0f );
-
-	enemyShip = new Asteroids::EnemyShip();
-	enemyShip->setRotationAxis( 1.0f , 0.0f , 0.0f );
-	enemyShip->setPosition( 50.0f , -50.0f , 0.0f );
-	enemyShip->setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) , 
-					    static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-						static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-	enemyShip->setScale( 50.0f );
+	playerShip->setScale( SCREEN_SIZE * SHIP_SIZE / 100.0f );
 }
+
+
 
 // Callback functions
 
@@ -80,14 +77,43 @@ void display() {
 	glLoadIdentity();
 	gluLookAt( 0 , 0 , 10 , 0 , 0 , -1 , 0 , 1 , 0 );
 
-	asteroid->draw();
-	playerShip->draw();
-	enemyShip->draw();
+	render();
+
+	glPushMatrix();
+		glTranslatef( SCREEN_SIZE , 0 , 0 );
+		render();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef( 0 - SCREEN_SIZE , 0 , 0 );
+		render();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef( 0 , SCREEN_SIZE , 0 );
+		render();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef( 0 , 0 - SCREEN_SIZE , 0 );
+		render();
+	glPopMatrix();
 
 	glFlush();
 	glutSwapBuffers();
 }
 
+
+void render() {
+	for ( int i = 0 ; i < asteroid_count ; ++i )
+			asteroids[i]->draw();
+
+	playerShip->draw();
+
+	for ( std::list<Asteroids::Laser *>::iterator i = lasers.begin() ; i != lasers.end() ; ++i )
+		(*i)->draw();
+
+}
 
 void handleMenu( int id ) {
 	switch( id ) {
@@ -98,12 +124,75 @@ void handleMenu( int id ) {
 
 
 void transform( int x ) {
-	asteroid->angle += rotationSpeed * 360.0f / 1000.0f * timerFrequency;
-	playerShip->angle += rotationSpeed * 360.0f / 1000.0f * timerFrequency;
-	enemyShip->angle += rotationSpeed * 360.0f / 1000.0f * timerFrequency;
+	for ( int i = 0 ; i < asteroid_count ; i++ ) {
+		asteroids[i]->transform( TIMER_FREQUENCY );
+		asteroids[i]->wrapAround();
+	}
 
+	playerShip->transform( TIMER_FREQUENCY );
+	playerShip->wrapAround();
+
+	for ( std::list<Asteroids::Laser *>::iterator i = lasers.begin() ; i != lasers.end() ; ++i ) {
+		(*i)->transform( TIMER_FREQUENCY );
+		(*i)->wrapAround();
+	}
+
+	if ( ! lasers.empty() && lasers.front()->time > LASER_DURATION ) {
+		lasers.pop_front();
+		laser_count--;
+	}
+	
 	glutPostRedisplay();
-	glutTimerFunc( timerFrequency , transform , 1 );
+	glutTimerFunc( TIMER_FREQUENCY , transform , 1 );
+}
+
+
+void keyDown( unsigned char key , int mouseX , int mouseY ) {
+	switch( key ) {
+	case 'x' :
+		playerShip->acceleration = SHIP_ACCELERATION;
+		break;
+	case 'z' :
+		if ( laser_count < MAX_LASERS ) {
+			lasers.push_back( playerShip->shoot() );
+			laser_count++;
+		}
+			
+		break;
+	}
+}
+
+
+void keyUp( unsigned char key , int mouseX , int mouseY ) {
+	switch( key ) {
+	case 'x' :
+		playerShip->acceleration = 0.0f;
+		break;
+	}
+}
+
+
+void specialDown( int key , int mouseX , int mouseY ) {
+	switch( key ) {
+	case GLUT_KEY_LEFT :
+		playerShip->spin_speed = SHIP_ROTATION_SPEED;
+		break;
+	case GLUT_KEY_RIGHT :
+		playerShip->spin_speed = 0.0f - SHIP_ROTATION_SPEED;
+		break;
+	}
+}
+
+
+void specialUp( int key , int mouseX , int mouseY ) {
+	switch( key ) {
+	case GLUT_KEY_LEFT :
+		playerShip->spin_speed = 0.0f;
+		break;
+	case GLUT_KEY_RIGHT :
+		playerShip->spin_speed = 0.0f;
+		break;
+	}
 }
 
 
@@ -117,7 +206,7 @@ void main( int argc , char * argv[] ) {
 
 	init();
 	glutDisplayFunc( display );
-	glutTimerFunc( timerFrequency , transform , 1 );
+	glutTimerFunc( TIMER_FREQUENCY , transform , 1 );
 
 	glutCreateMenu( handleMenu );
 	glutAddMenuEntry( "Quit" , 0 );
@@ -144,6 +233,11 @@ void main( int argc , char * argv[] ) {
 
 	glEnable( GL_DEPTH );
 	glEnable( GL_NORMALIZE );
+
+	glutKeyboardFunc( keyDown );
+	glutKeyboardUpFunc( keyUp );
+	glutSpecialFunc( specialDown );
+	glutSpecialUpFunc( specialUp );
 
 	glutMainLoop();
 }

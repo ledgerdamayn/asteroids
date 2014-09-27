@@ -9,9 +9,15 @@ namespace Asteroids {
 
 	public :
 
+		int index;
+
 		float position[3];
+
 		float rotationAxis[3];
-		float angle , scalar;
+		float rotation_angle , rotation_speed;
+		
+		float angle , spin_speed , speed , acceleration , scalar;
+		
 		float rgb[3]; // Global/default color
 		
 		Model * model;
@@ -24,8 +30,18 @@ namespace Asteroids {
 
 		void setPosition( float , float , float );
 		void setScale( float );
-		void setAngle( float );
+		
 		void setRotationAxis( float , float , float );
+		void setRotationAngle( float );
+		void setRotationSpeed( float );
+
+		void setAngle( float );
+		void setSpinSpeed( float );
+		void setSpeed( float );
+		void setAcceleration( float );
+
+		void wrapAround();
+		void transform( int );
 
 		void setColor( float , float , float );
 

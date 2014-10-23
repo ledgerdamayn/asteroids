@@ -224,7 +224,7 @@ void main( int argc , char * argv[] ) {
 	glEnable( GL_CULL_FACE );
 	glCullFace( GL_BACK );
 
-	GLfloat light_position[] = { 1.0 , 1.0 , 1.0 , 0.0 };
+	GLfloat light_position[] = { 0.0 , 0.0 , 10.0 , 0.0 };
 	glLightfv( GL_LIGHT0 , GL_POSITION , light_position );
 
 	glEnable( GL_LIGHTING );

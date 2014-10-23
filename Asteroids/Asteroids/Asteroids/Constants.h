@@ -11,7 +11,7 @@
 #define ASTEROID_BASE_SPEED 25 // Percent of screen/sec
 #define ASTEROID_SPEED_RANGE 10
 
-#define SHIP_SIZE 5
+#define SHIP_SIZE 8
 #define SHIP_ACCELERATION 10
 #define SHIP_SPEED_DECAY 0.9
 #define SHIP_SPEED_LAMBDA 0.0001

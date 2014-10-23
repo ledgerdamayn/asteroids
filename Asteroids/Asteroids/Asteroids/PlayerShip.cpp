@@ -15,6 +15,7 @@
 
 #include "Constants.h"
 #include "PlayerShip.h"
+#include "PlayerShipModel.h"
 
 namespace Asteroids {
 
@@ -22,7 +23,7 @@ namespace Asteroids {
 	PlayerShip :: PlayerShip() {
 		setPosition( 0.0f , 0.0f , 0.0f );
 		setScale( 1.0f );
-		setAngle( 90.0f );
+		setAngle( 0.0f );
 		setRotationAxis( 0.0f , 0.0f , 1.0f );
 		setRotationAngle( 0.0f );
 		setRotationSpeed( 0.0f );
@@ -34,14 +35,14 @@ namespace Asteroids {
 		setSpeed( 0.0f );
 		setAcceleration( 0.0f );
 
-	//	model = new PlayerShipModel();
+		model = new PlayerShipModel();
 	}
 
 
 	PlayerShip :: PlayerShip( float scalar , float r , float g , float b ) {
 		setPosition( 0.0f , 0.0f , 0.0f );
 		setScale( scalar );
-		setAngle( 90.0f );
+		setAngle( 0.0f );
 		setRotationAxis( 0.0f , 0.0f , 1.0f );
 		setRotationAngle( 0.0f );
 		setRotationSpeed( 0.0f );
@@ -61,7 +62,7 @@ namespace Asteroids {
 
 
 	Laser * PlayerShip :: shoot() {
-		return new Laser( angle , LASER_SPEED , position[0] , position[1] , position[2] );
+		return new Laser( angle + 90 , LASER_SPEED , position[0] , position[1] , position[2] );
 	}
 
 
@@ -90,9 +91,8 @@ namespace Asteroids {
 		glTranslatef( position[0] , position[1] , position[2] );
 		glScalef( scalar , scalar , scalar );
 		glRotatef( angle , 0 , 0 , 1 );
-	//	glRotatef( 90 , 0 , 1 , 0 );
 
-		glutSolidCone( 1 , 2 , 5 , 10 );
+		model->draw();
 		
 		glPopMatrix();
 	}

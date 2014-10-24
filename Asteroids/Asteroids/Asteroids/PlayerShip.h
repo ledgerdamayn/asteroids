@@ -18,7 +18,8 @@ namespace Asteroids {
 		PlayerShip( float , float , float , float );
 		~PlayerShip();
 		
-		Laser * shoot();
+		void reset();
+		void shoot( Laser * );
 		void transform( int );
 		void draw();
 

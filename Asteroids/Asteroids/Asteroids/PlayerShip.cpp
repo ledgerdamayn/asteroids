@@ -34,20 +34,43 @@ namespace Asteroids {
 		setAcceleration( 0.0f );
 		
 		model = new PlayerShipModel();
-		start_bound = new Triangle( new Vertex( 0 , 0.5 * scalar , 0 ) ,
-									new Vertex( -0.5 , -0.5 , 0 ) ,
-									new Vertex( 0.5 , -0.5 , 0 ) );
-		current_bound = new Triangle();
+		start_bound = new Triangle( new Vertex( 0.5f * scalar , 0 , 0 ) ,
+									new Vertex( -0.5f * scalar , 0.5f * scalar , 0 ) ,
+									new Vertex( -0.5f * scalar , -0.5f * scalar , 0 ) );
+		current_bound =  new Triangle( new Vertex( 0.5f * scalar , 0 , 0 ) ,
+									new Vertex( -0.5f * scalar , 0.5f * scalar , 0 ) ,
+									new Vertex( -0.5f * scalar , -0.5f * scalar , 0 ) );
 	}
 
 
 	PlayerShip :: ~PlayerShip() {
 		delete model;
+		delete start_bound;
+		delete current_bound;
 	}
 
 
-	Laser * PlayerShip :: shoot() {
-		return new Laser( angle , LASER_SPEED , position[0] , position[1] , position[2] );
+	void PlayerShip :: reset() {
+		setPosition( 0.0f , 0.0f , 0.0f );
+		setAngle( 0.0f );
+		setRotationAxis( 0.0f , 0.0f , 1.0f );
+		setRotationAngle( 0.0f );
+		setRotationSpeed( 0.0f );
+		setSpinSpeed( 0.0f );
+		setSpeed( 0.0f );
+		setAcceleration( 0.0f );
+
+		current_bound =  new Triangle( new Vertex( 0.5f * scalar , 0 , 0 ) ,
+									new Vertex( -0.5f * scalar , 0.5f * scalar , 0 ) ,
+									new Vertex( -0.5f * scalar , -0.5f * scalar , 0 ) );
+	}
+
+
+	void PlayerShip :: shoot( Laser * laser ) {
+		laser->angle = angle;
+		laser->speed = LASER_SPEED;
+		laser->setPosition( position[0] , position[1] , position[2] );
+		laser->time = 0;
 	}
 
 
@@ -95,7 +118,6 @@ namespace Asteroids {
 		current_bound->v[2]->set( start_bound->v[2]->x() * cos( radians ) - start_bound->v[2]->y() * sin( radians ) + position[0] ,
 								  start_bound->v[2]->y() * cos( radians ) + start_bound->v[2]->x() * sin( radians ) + position[1] ,
 								  0 );
-
 	}
 
 }

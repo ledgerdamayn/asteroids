@@ -86,4 +86,13 @@ namespace Asteroids {
 	}
 
 
+	Triangle :: ~Triangle() {
+		for ( int i = 0 ; i < 3 ; ++i )
+			delete v[i];
+
+		delete[] v;
+		delete n;
+	}
+
+
 }

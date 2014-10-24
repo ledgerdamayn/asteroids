@@ -10,16 +10,15 @@ namespace Asteroids {
 	public :
 		
 		float radius;
-		float type;
+		int type;
 
-		Asteroid(); // Radius = 0.5 , Centered about origin, Perturb = 50, Rotates about z-axis
-		Asteroid( int , int ); // Perturb
+		Asteroid();
 		~Asteroid();
 
 		void draw();
 
 		void spawn();
-		Asteroid ** fragment( Asteroid * );
+		void fragment( Asteroid * , Asteroid * );
 
 	};
 

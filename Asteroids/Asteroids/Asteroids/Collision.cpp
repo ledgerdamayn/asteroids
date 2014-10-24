@@ -14,32 +14,36 @@
 #include <time.h>
 
 #include "Collision.h"
+#include <iostream>
 
 
 namespace Asteroids {
 
 
-	bool point_in_circle( Vertex * point , Vertex * center , float radius ) {
-		float distance = pow( point->x() - center->x() , 2 ) + pow( point->y() - center->y() , 2 );
+	bool point_in_circle( float point[3] , float center[3] , float radius ) {
+		float distance = sqrt( pow( point[0] - center[0] , 2 ) + pow( point[1] - center[1] , 2 ) );
 		return ( distance <= radius );
 	}
 
 
-	bool line_segment_in_circle( Vertex * v1 , Vertex * v2 , Vertex * center , float radius ) {
+	bool line_segment_in_circle( Vertex * v1 , Vertex * v2 , float center[3] , float radius ) {
 		float d_x = v2->x() - v1->x();
 		float d_y = v2->y() - v1->y();
-		float d = pow( d_x , 2 ) + pow( d_x , 2 );
-		float d2 = ( v1->x() - center->x() ) * ( v2->y() - center->y() ) - ( v2->x() - center->x() ) * ( v1->y() - center->y() );
+		float d = pow( d_x , 2 ) + pow( d_y , 2 );
+		float d2 = ( v1->x() - center[0] ) * ( v2->y() - center[1] ) - ( v2->x() - center[0] ) * ( v1->y() - center[1] );
 		float delta = pow( radius , 2 ) * d - pow( d2 , 2 );
 
-		if ( delta < 0 )
+	//	if ( delta >= 0.0f )
+	//		std::cout << delta << " " << center[0] << " " << center[1] << " " << radius << "\n";
+
+		if ( delta < 0.0f )
 			return false;
 		else {
-			int sign_d_y = ( d_y < 0 ) ? -1 : 1;
+			float sign_d_y = ( d_y < 0.0f ) ? -1.0f : 1.0f;
 			float x1 = ( d2 * d_y + sign_d_y * d_x * sqrt( delta ) ) / d;
 			float x2 = ( d2 * d_y - sign_d_y * d_x * sqrt( delta ) ) / d;
-			float y1 = ( -1 * d2 * d_x + abs( d_y ) * sqrt( delta ) ) / d;
-			float y2 = ( -1 * d2 * d_x - abs( d_y ) * sqrt( delta ) ) / d;
+			float y1 = ( -1.0f * d2 * d_x + abs( d_y ) * sqrt( delta ) ) / d;
+			float y2 = ( -1.0f * d2 * d_x - abs( d_y ) * sqrt( delta ) ) / d;
 
 			if ( point_on_line_segment( x1 , y1 , v1 , v2 ) || point_on_line_segment( x2 , y2 , v1 , v2 ) )
 				return true;
@@ -50,6 +54,12 @@ namespace Asteroids {
 
 
 	bool point_on_line_segment( float x , float y , Vertex * v1 , Vertex * v2 ) {
+		float cross_product = ( y - v1->y() ) * ( v2->x() - v1->x() ) - ( x - v1->x() ) * ( v2->y() - v1->y() );
+		// std::cout << x << " " << y << "\n";
+		// std::cout << cross_product << "\n";
+		if ( abs( cross_product ) > 0.0000001f )
+			return false;
+
 		float dot_product = ( x - v1->x() ) * ( v2->x() - x ) + ( y - v1->y() ) * ( v2->y() - y );
 		if ( dot_product < 0.0f )
 			return false;

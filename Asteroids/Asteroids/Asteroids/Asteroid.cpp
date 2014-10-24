@@ -107,4 +107,34 @@ namespace Asteroids {
 		setSpeed( ASTEROID_BASE_SPEED * SCREEN_SIZE / 100.0f );
 	}
 
+
+	Asteroid ** Asteroid :: fragment( Asteroid * parent ) {
+		Asteroid ** children = new Asteroid * [ASTEROID_FRAGMENT_COUNT];
+
+		if ( parent->type = LARGE ) {
+			for ( int i = 0 ; i < ASTEROID_FRAGMENT_COUNT ; ++i ) {
+				children[i] = new Asteroid( ASTEROID_PERTURB , MEDIUM );
+				children[i]->setScale( SCREEN_SIZE * ( ASTEROID_BASE_SIZE * ASTEROID_MEDIUM_RATIO + ( rand() % ( ASTEROID_SIZE_RANGE * 2 + 1 ) - ASTEROID_SIZE_RANGE ) ) / 100.0f );
+				children[i]->radius = children[i]->scalar * 0.5;
+			}
+		} else if ( parent->type = MEDIUM ) {
+			for ( int i = 0 ; i < ASTEROID_FRAGMENT_COUNT ; ++i ) {
+				children[i] = new Asteroid( ASTEROID_PERTURB , SMALL );
+				children[i]->setScale( SCREEN_SIZE * ( ASTEROID_BASE_SIZE * ASTEROID_SMALL_RATIO + ( rand() % ( ASTEROID_SIZE_RANGE * 2 + 1 ) - ASTEROID_SIZE_RANGE ) ) / 100.0f );
+				children[i]->radius = children[i]->scalar * 0.5;
+			}
+		}
+
+		for ( int i = 0 ; i < ASTEROID_FRAGMENT_COUNT ; ++i ) {
+			children[i]->setPosition( parent->position[0] , parent->position[1] , parent->position[2] );
+			children[i]->setRotationAxis( 2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f , 
+						     2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f ,
+							 2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f );
+			children[i]->setRotationSpeed( ASTEROID_BASE_SPIN + ( rand() % ( ASTEROID_SPIN_RANGE * 2 + 1 ) - ASTEROID_SPIN_RANGE ) );
+
+			children[i]->setAngle( rand() % 360 );
+			children[i]->setSpeed( ASTEROID_BASE_SPEED * SCREEN_SIZE / 100.0f );
+		}
+	}
+
 }

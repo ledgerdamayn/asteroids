@@ -11,8 +11,9 @@
 #define ASTEROID_BASE_SPEED 25 // Percent of screen/sec
 #define ASTEROID_SPEED_RANGE 10
 #define ASTEROID_MEDIUM_RATIO 0.5 // Relative to large asteroid
-#define ASTEROID_SMALL_RATIO 0.5 // Relative to medium asteroid
+#define ASTEROID_SMALL_RATIO 0.1 // Relative to large asteroid
 #define ASTEROID_FRAGMENT_COUNT 2
+#define ASTEROID_PERTURB 75
 
 #define SHIP_SIZE 8
 #define SHIP_ACCELERATION 10

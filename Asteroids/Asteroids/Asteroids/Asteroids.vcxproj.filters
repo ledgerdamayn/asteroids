@@ -72,14 +72,17 @@
     <ClCompile Include="EnemyShip.cpp">
       <Filter>Resource Files\Renderable</Filter>
     </ClCompile>
-    <ClCompile Include="hw2_main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LaserModel.cpp">
       <Filter>Resource Files\Models</Filter>
     </ClCompile>
     <ClCompile Include="Laser.cpp">
       <Filter>Resource Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="hw3_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Resource Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

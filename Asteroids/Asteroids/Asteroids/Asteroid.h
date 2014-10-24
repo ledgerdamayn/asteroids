@@ -19,6 +19,7 @@ namespace Asteroids {
 		void draw();
 
 		void spawn();
+		Asteroid ** fragment( Asteroid * );
 
 	};
 

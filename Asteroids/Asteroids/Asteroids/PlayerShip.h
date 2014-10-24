@@ -3,20 +3,26 @@
 
 #include "Renderable.h"
 #include "Laser.h"
+#include "Triangle.h"
+
 
 namespace Asteroids {
 
 	class PlayerShip : public Renderable {
 
 	public :
+		
+		Triangle * start_bound; // Absolute positions
+		Triangle * current_bound;
 
-		PlayerShip(); // Radius = 0.5 , Centered about origin , Oriented in +y direction (rotates about y) , White
 		PlayerShip( float , float , float , float );
 		~PlayerShip();
 		
 		Laser * shoot();
 		void transform( int );
 		void draw();
+
+		void updateBounds();
 
 	};
 

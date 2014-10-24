@@ -20,25 +20,6 @@
 namespace Asteroids {
 
 
-	PlayerShip :: PlayerShip() {
-		setPosition( 0.0f , 0.0f , 0.0f );
-		setScale( 1.0f );
-		setAngle( 0.0f );
-		setRotationAxis( 0.0f , 0.0f , 1.0f );
-		setRotationAngle( 0.0f );
-		setRotationSpeed( 0.0f );
-		setColor( static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-				  static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
-				  static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
-		setSpinSpeed( 0.0f );
-
-		setSpeed( 0.0f );
-		setAcceleration( 0.0f );
-
-		model = new PlayerShipModel();
-	}
-
-
 	PlayerShip :: PlayerShip( float scalar , float r , float g , float b ) {
 		setPosition( 0.0f , 0.0f , 0.0f );
 		setScale( scalar );
@@ -51,8 +32,12 @@ namespace Asteroids {
 
 		setSpeed( 0.0f );
 		setAcceleration( 0.0f );
-
-	//	model = new PlayerShipModel();
+		
+		model = new PlayerShipModel();
+		start_bound = new Triangle( new Vertex( 0 , 0.5 * scalar , 0 ) ,
+									new Vertex( -0.5 , -0.5 , 0 ) ,
+									new Vertex( 0.5 , -0.5 , 0 ) );
+		current_bound = new Triangle();
 	}
 
 
@@ -62,8 +47,9 @@ namespace Asteroids {
 
 
 	Laser * PlayerShip :: shoot() {
-		return new Laser( angle + 90 , LASER_SPEED , position[0] , position[1] , position[2] );
+		return new Laser( angle , LASER_SPEED , position[0] , position[1] , position[2] );
 	}
+
 
 
 	void PlayerShip :: transform( int millis ) {
@@ -95,6 +81,21 @@ namespace Asteroids {
 		model->draw();
 		
 		glPopMatrix();
+	}
+
+
+	void PlayerShip :: updateBounds() {
+		double radians = angle * M_PI / 180.0;
+		current_bound->v[0]->set( start_bound->v[0]->x() * cos( radians ) - start_bound->v[0]->y() * sin( radians ) + position[0] ,
+								  start_bound->v[0]->y() * cos( radians ) + start_bound->v[0]->x() * sin( radians ) + position[1] ,
+								  0 );
+		current_bound->v[1]->set( start_bound->v[1]->x() * cos( radians ) - start_bound->v[1]->y() * sin( radians ) + position[0] ,
+								  start_bound->v[1]->y() * cos( radians ) + start_bound->v[1]->x() * sin( radians ) + position[1] ,
+								  0 );
+		current_bound->v[2]->set( start_bound->v[2]->x() * cos( radians ) - start_bound->v[2]->y() * sin( radians ) + position[0] ,
+								  start_bound->v[2]->y() * cos( radians ) + start_bound->v[2]->x() * sin( radians ) + position[1] ,
+								  0 );
+
 	}
 
 }

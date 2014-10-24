@@ -44,8 +44,7 @@ void specialUp( int , int , int );
 int asteroid_count = 4;
 int laser_count = 0;
 
-Asteroids::Asteroid ** asteroids;
-
+std::list<Asteroids::Asteroid *> asteroids;
 std::list<Asteroids::Laser *> lasers;
 
 Asteroids::PlayerShip * playerShip;
@@ -57,14 +56,16 @@ Asteroids::EnemyShip * enemyShip;
 void init() {
 	srand( time( NULL ) );
 
-	asteroids = new Asteroids::Asteroid * [asteroid_count];
-	for ( int i = 0 ; i < asteroid_count ; ++i ) {
-		asteroids[i] = new Asteroids::Asteroid( 75 );
-		asteroids[i]->initialize( i );
-	}
+	for ( int i = 0 ; i < asteroid_count ; ++i )
+		asteroids.push_back( new Asteroids::Asteroid( 75 , LARGE ) );
 
-	playerShip = new Asteroids::PlayerShip();
-	playerShip->setScale( SCREEN_SIZE * SHIP_SIZE / 100.0f );
+	for ( std::list<Asteroids::Asteroid *>::iterator i = asteroids.begin() ; i != asteroids.end() ; ++i )
+		(*i)->spawn();
+
+	playerShip = new Asteroids::PlayerShip( SCREEN_SIZE * SHIP_SIZE / 100.0f ,
+											static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
+											static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) ,
+											static_cast <float> ( rand() ) / static_cast <float> ( RAND_MAX ) );
 }
 
 
@@ -105,8 +106,8 @@ void display() {
 
 
 void render() {
-	for ( int i = 0 ; i < asteroid_count ; ++i )
-			asteroids[i]->draw();
+	for ( std::list<Asteroids::Asteroid *>::iterator i = asteroids.begin() ; i != asteroids.end() ; ++i )
+		(*i)->draw();
 
 	playerShip->draw();
 
@@ -124,9 +125,9 @@ void handleMenu( int id ) {
 
 
 void transform( int x ) {
-	for ( int i = 0 ; i < asteroid_count ; i++ ) {
-		asteroids[i]->transform( TIMER_FREQUENCY );
-		asteroids[i]->wrapAround();
+	for ( std::list<Asteroids::Asteroid *>::iterator i = asteroids.begin() ; i != asteroids.end() ; ++i ) {
+		(*i)->transform( TIMER_FREQUENCY );
+		(*i)->wrapAround();
 	}
 
 	playerShip->transform( TIMER_FREQUENCY );

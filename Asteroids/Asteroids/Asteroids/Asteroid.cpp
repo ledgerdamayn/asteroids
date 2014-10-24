@@ -36,7 +36,7 @@ namespace Asteroids {
 	}
 
 
-	Asteroid :: Asteroid( int perturb ) {
+	Asteroid :: Asteroid( int perturb , int type ) {
 		setPosition( 0.0f , 0.0f , 0.0f );
 		setScale( 1.0f );
 		setAngle( 0.0f );
@@ -50,6 +50,7 @@ namespace Asteroids {
 		setSpeed( 0.0f );
 		setAcceleration( 0.0f );
 
+		this->type = type;
 		model = new AsteroidModel( 0.5 , 5 , 7 , perturb );
 	}
 
@@ -72,14 +73,13 @@ namespace Asteroids {
 	}
 
 
-	void Asteroid :: initialize( int index ) {
-		this->index = index;
+	void Asteroid :: spawn() {
 		int side = rand() % 4;
 		int min = ( 0 - SCREEN_SIZE ) / 2;
 		int max = SCREEN_SIZE / 2;
 		int offset = min + rand() % SCREEN_SIZE;
 
-		switch (side) {
+		switch ( side ) {
 		case 0 : // Top
 			setPosition( offset , max , 0 );						 
 			break;
@@ -95,6 +95,9 @@ namespace Asteroids {
 		}
 
 		setScale( SCREEN_SIZE * ( ASTEROID_BASE_SIZE + ( rand() % ( ASTEROID_SIZE_RANGE * 2 + 1 ) - ASTEROID_SIZE_RANGE ) ) / 100.0f );
+		
+		radius = scalar * 0.5;
+
 		setRotationAxis( 2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f , 
 					     2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f ,
 						 2.0f * ( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) ) - 1.0f );
@@ -102,8 +105,6 @@ namespace Asteroids {
 
 		setAngle( rand() % 360 );
 		setSpeed( ASTEROID_BASE_SPEED * SCREEN_SIZE / 100.0f );
-
 	}
-
 
 }
